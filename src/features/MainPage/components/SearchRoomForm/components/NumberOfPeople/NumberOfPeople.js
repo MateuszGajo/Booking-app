@@ -6,6 +6,7 @@ const NumberPeople = props => {
   const [children, setChildren] = useState(0);
   const handleClickAmount = () => {
     setactive(false);
+    props.isActive(false);
     props.getRoomPersonAmount({ adults, children });
   };
   return (
@@ -17,7 +18,10 @@ const NumberPeople = props => {
           placeholder={`${
             adults === 1 ? adults + " Dorosły" : adults + " Dorosłych"
           }, ${children === 1 ? children + " Dziecko" : children + " Dzieci"}`}
-          onClick={() => setactive(!active)}
+          onClick={() => {
+            setactive(true);
+            props.isActive(true);
+          }}
         />
         <i className="fas fa-user" />
       </div>
@@ -78,6 +82,11 @@ const NumberPeople = props => {
             value="Wybierz"
             onClick={handleClickAmount}
           />
+        </div>
+        <div className="error">
+          <span>
+            {props.activeWindowError ? props.activeWindowError : null}
+          </span>
         </div>
       </section>
     </>

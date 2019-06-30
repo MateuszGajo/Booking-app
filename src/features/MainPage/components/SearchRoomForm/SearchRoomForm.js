@@ -6,6 +6,7 @@ import roomContext from "../../context/roomContext";
 const SearchRoomForm = () => {
   const context = useContext(roomContext);
   const [roomValues, setRoomValues] = useState({});
+  const [activeNumberOfPeople, setActiveOfPeople] = useState(false);
   const [errors, setErrors] = useState({});
   const getRoomDate = (value, name) => {
     setRoomValues({ ...roomValues, [name]: value });
@@ -13,8 +14,14 @@ const SearchRoomForm = () => {
   const getRoomAmount = value => {
     setRoomValues({ ...roomValues, ...value });
   };
+  const isActive = value => {
+    setActiveOfPeople(value);
+    if (!value) setErrors({ activeNumberOfPeople: "" });
+  };
   const handleSubmit = e => {
     e.preventDefault();
+    if (activeNumberOfPeople)
+      return setErrors({ activeNumberOfPeople: "Potwierdź swój wybor" });
     if (!roomValues.arrivalDate)
       return setErrors({
         arrivalDateError: "Nie wybrałeś daty przyjazdu"
@@ -66,7 +73,11 @@ const SearchRoomForm = () => {
           </div>
         </div>
         <div className="input-field relative">
-          <NumberPeople getRoomPersonAmount={getRoomAmount} />
+          <NumberPeople
+            getRoomPersonAmount={getRoomAmount}
+            isActive={isActive}
+            activeWindowError={errors.activeNumberOfPeople}
+          />
           <div className="error">
             <span>
               {errors.amountOfPersonError ? errors.amountOfPersonError : null}

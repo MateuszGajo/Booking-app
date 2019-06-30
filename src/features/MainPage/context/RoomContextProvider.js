@@ -12,6 +12,7 @@ const RoomContextProvider = props => {
   const findAvailableRoom = valueRoom => {
     const { arrivalDate, leaveDate, adults, children } = valueRoom;
     const url = `http://testapi.itur.pl/api.php?date_from=${arrivalDate}&date_to=${leaveDate}&nb_adults=${adults}&nb_children=${children}`;
+    console.log(url);
     jsonp(url, {}, (err, data) => {
       if (err) throw new Error("błąd w pobieraniu danych");
       loadingRoom(false);
