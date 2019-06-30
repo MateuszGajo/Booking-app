@@ -21,7 +21,9 @@ header {
       padding: 20px;
       background-color: rgba(0, 0, 0, 0.5);
       .input-field {
-        input {
+        display: flex;
+        align-items: flex-end;
+        input:not([type="button"]) {
           border: none;
           border-bottom: 1px solid white;
           color: white;
@@ -36,12 +38,13 @@ header {
         }
         .persons {
           position: absolute;
+          top: 60px;
           width: calc(100% - 10px);
           padding: 5px;
-          transform: translateY(-100%);
+          transform: translateY(-50%);
           background-color: white;
           box-shadow: 0 0 1px 1px #e1e1e1;
-          transition: height 0.3s;
+          transition: transform 0.3s;
           z-index: -1;
           .person-box {
             display: flex;
@@ -58,7 +61,7 @@ header {
             .count {
               display: flex;
               align-items: center;
-              button {
+              input.amount {
                 display: flex;
                 align-self: center;
                 justify-content: center;
@@ -77,11 +80,27 @@ header {
                 font-size: 28px;
                 padding: 0 10px;
               }
+              .disable {
+                color: grey !important;
+              }
             }
           }
           &.active {
             z-index: 1;
             transform: translateY(-1px);
+          }
+          .amount {
+            .btn-amount {
+              display: block;
+              width: 90%;
+              height: 40px;
+              margin: 20px auto 10px;
+              text-transform: uppercase;
+              border: none;
+              background-color: #33bdc4;
+              cursor: pointer;
+              font-size: 18px;
+            }
           }
         }
         .input-with-icon {
@@ -112,6 +131,10 @@ header {
         text-transform: uppercase;
         font-size: 16px;
         font-weight: bold;
+        transition: background-color 0.5s;
+        &:hover {
+          background-color: #33bdc4;
+        }
       }
     }
   }

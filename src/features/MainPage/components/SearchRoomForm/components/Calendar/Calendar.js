@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 import "moment/locale/pl";
+import moment from "moment";
 
 import MomentLocaleUtils, {
   formatDate,
@@ -9,12 +10,18 @@ import MomentLocaleUtils, {
 } from "react-day-picker/moment";
 
 const Calendar = props => {
+  const handleChange = e => {
+    const dateTime = moment(e).format("YYYY-MM-DD");
+    props.getRoomDate(dateTime, props.name);
+  };
   return (
     <div className="input-with-icon">
-      <i class="far fa-calendar-alt" />
+      <i className="far fa-calendar-alt" />
       <DayPickerInput
         formatDate={formatDate}
         parseDate={parseDate}
+        onDayChange={handleChange}
+        name={props.name}
         format="LL"
         placeholder={`${props.placeholder}`}
         dayPickerProps={{
