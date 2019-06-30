@@ -2,10 +2,11 @@ import React, { useState } from "react";
 
 const NumberPeople = props => {
   const [active, setactive] = useState(false);
-  const [count, setCount] = useState({ adult: 2, child: 0 });
+  const [adults, setAdults] = useState(0);
+  const [children, setChildren] = useState(0);
   const handleClickAmount = () => {
     setactive(false);
-    props.getRoomPersonAmount(count);
+    props.getRoomPersonAmount({ adults, children });
   };
   return (
     <>
@@ -14,14 +15,8 @@ const NumberPeople = props => {
           className="choose-field"
           type="text"
           placeholder={`${
-            count.adult === 1
-              ? count.adult + " Dorosły"
-              : count.adult + " Dorosłych"
-          } , ${
-            count.child === 1
-              ? count.child + " Dziecko"
-              : count.child + " Dzieci"
-          }`}
+            adults === 1 ? adults + " Dorosły" : adults + " Dorosłych"
+          }, ${children === 1 ? children + " Dziecko" : children + " Dzieci"}`}
           onClick={() => setactive(!active)}
         />
         <i className="fas fa-user" />
@@ -35,22 +30,19 @@ const NumberPeople = props => {
             <input
               type="button"
               value="-"
-              className={count.adult > 0 ? "amount" : "amount disable"}
+              className={adults > 0 ? "amount" : "amount disable"}
               onClick={() => {
-                if (count.adult > 0)
-                  setCount({ ...count, adult: count.adult - 1 });
+                if (adults > 0) setAdults(adults - 1);
               }}
             />
 
-            <span className={count.adult > 0 ? null : "disable"}>
-              {count.adult}
-            </span>
+            <span className={adults > 0 ? null : "disable"}>{adults}</span>
             <input
               type="button"
               className="amount"
               value="+"
               onClick={() => {
-                setCount({ ...count, adult: count.adult + 1 });
+                setAdults(adults + 1);
               }}
             />
           </div>
@@ -63,21 +55,18 @@ const NumberPeople = props => {
             <input
               type="button"
               value="-"
-              className={count.child > 0 ? "amount" : "amount disable"}
+              className={children > 0 ? "amount" : "amount disable"}
               onClick={() => {
-                if (count.child > 0)
-                  setCount({ ...count, child: count.child - 1 });
+                if (children > 0) setChildren(children - 1);
               }}
             />
-            <span className={count.child > 0 ? null : "disable"}>
-              {count.child}
-            </span>
+            <span className={children > 0 ? null : "disable"}>{children}</span>
             <input
               type="button"
               className="amount"
               value="+"
               onClick={() => {
-                setCount({ ...count, child: count.child + 1 });
+                setChildren(children + 1);
               }}
             />
           </div>

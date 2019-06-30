@@ -22,6 +22,7 @@ const Calendar = props => {
         parseDate={parseDate}
         onDayChange={handleChange}
         name={props.name}
+        inputProps={{ readOnly: true }}
         format="LL"
         placeholder={`${props.placeholder}`}
         dayPickerProps={{

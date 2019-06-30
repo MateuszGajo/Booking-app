@@ -1,74 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import roomContext from "../../context/roomContext";
+import Cards from "./components/Cards/Cards";
 
 const AvailableRoom = () => {
+  const context = useContext(roomContext);
   return (
-    <roomContext.Consumer>
-      {context => (
+    <>
+      {context.loading ? (
+        <div className="animation">
+          <div class="ring">
+            Ładowanie
+            <span />
+          </div>
+        </div>
+      ) : (
         <>
           {context.availableRoom ? (
             <>
-              {context.availableRoom.map((item, index) => {
-                console.log(item);
-                if (index % 2 == 0)
-                  return (
-                    <section className="container">
-                      <div className="photo">
-                        <img src={item.image} alt="name" />
-                      </div>
-                      <section className="card">
-                        <h2>{item.name}</h2>
-                        <p>Typ: {item.roomType}</p>
-                        <section className="information">
-                          <div className="rooms-info">
-                            <p>Sypialnie: {item.bedroomsCount}</p>
-                            <p>Pojedyncze łóżka: {item.singleBedsCount}</p>
-                            <p>Podwójne łóżka: {item.doubleBedsCount}</p>
-                          </div>
-                          <div className="highline" />
-                          <div className="prices">
-                            <p>Cena: {item.totalPrice}</p>
-                          </div>
-                        </section>
-                      </section>
-                    </section>
-                  );
-                else
-                  return (
-                    <section className="container second-card">
-                      <section className="card">
-                        <h2>{item.name}</h2>
-                        <p>Typ: {item.roomType}</p>
-                        <section className="information">
-                          <div className="prices">
-                            <p>Cena: {item.totalPrice}</p>
-                          </div>
-                          <div className="highline" />
-                          <div className="rooms-info">
-                            <p>Sypialnie: {item.bedroomsCount}</p>
-                            <p>Pojedyncze łóżka: {item.singleBedsCount}</p>
-                            <p>Podwójne łóżka: {item.doubleBedsCount}</p>
-                          </div>
-                        </section>
-                      </section>
-                      <div className="photo">
-                        <img src={item.image} alt="name" />
-                      </div>
-                    </section>
-                  );
-              })}
+              {context.availableRoom.map((item, index) => (
+                <Cards item={item} index={index} />
+              ))}
             </>
-          ) : (
-            <div className="animation">
-              <div class="ring">
-                Ładowanie
-                <span />
-              </div>
-            </div>
-          )}
+          ) : context.availableRoom !== undefined ? (
+            "Nie znaleziono pokoji"
+          ) : null}
         </>
       )}
-    </roomContext.Consumer>
+    </>
   );
 };
 

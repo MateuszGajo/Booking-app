@@ -21,6 +21,7 @@ header {
       padding: 20px;
       background-color: rgba(0, 0, 0, 0.5);
       .input-field {
+        position: relative;
         display: flex;
         align-items: flex-end;
         input:not([type="button"]) {
@@ -36,16 +37,29 @@ header {
         ::placeholder {
           color: white;
         }
+        .error {
+          position: absolute;
+          width: 100%;
+          top: 103%;
+          color: red;
+          text-align: center;
+          font-weight: bold;
+          text-transform: uppercase;
+          span {
+            text-shadow: 0 0 7px #000;
+          }
+        }
         .persons {
           position: absolute;
           top: 60px;
           width: calc(100% - 10px);
           padding: 5px;
-          transform: translateY(-50%);
+          // transform: translateY(-100%);
           background-color: white;
           box-shadow: 0 0 1px 1px #e1e1e1;
-          transition: transform 0.3s;
-          z-index: -1;
+          opacity: 0;
+          transition: opacity 0.3s;
+          z-index: 1;
           .person-box {
             display: flex;
             justify-content: space-between;
@@ -61,7 +75,7 @@ header {
             .count {
               display: flex;
               align-items: center;
-              input.amount {
+              .amount {
                 display: flex;
                 align-self: center;
                 justify-content: center;
@@ -86,8 +100,7 @@ header {
             }
           }
           &.active {
-            z-index: 1;
-            transform: translateY(-1px);
+            opacity: 1;
           }
           .amount {
             .btn-amount {

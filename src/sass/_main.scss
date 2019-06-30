@@ -2,13 +2,12 @@ main {
   display: flex;
   flex-direction: column;
   background-color: #eeeeee;
-  height: 100vh;
   .container {
     display: flex;
     align-self: flex-start;
     box-shadow: 0 0 3px 2px #d1d1d1;
     background-color: white;
-    margin: 20px;
+    margin: 50px 20px 20px;
     min-width: 50vw;
     .photo {
       display: flex;
