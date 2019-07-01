@@ -29,7 +29,7 @@ header {
           border-bottom: 1px solid white;
           color: white;
           height: 50px;
-          width: 200px;
+          width: 100%;
           background-color: transparent;
           cursor: pointer;
           text-align: center;
@@ -52,14 +52,14 @@ header {
         .persons {
           position: absolute;
           top: 60px;
-          width: calc(100% - 10px);
+          width: calc(100% + 30px);
           padding: 5px;
           // transform: translateY(-100%);
           background-color: white;
           box-shadow: 0 0 1px 1px #e1e1e1;
-          opacity: 0;
-          transition: opacity 0.3s;
-          z-index: 1;
+          visibility: hidden;
+          transition: visibility 0.3s;
+          z-index: -1;
           .person-box {
             display: flex;
             justify-content: space-between;
@@ -100,7 +100,8 @@ header {
             }
           }
           &.active {
-            opacity: 1;
+            z-index: 1;
+            visibility: visible;
           }
           .amount {
             .btn-amount {
@@ -136,7 +137,7 @@ header {
       }
       button {
         height: 60px;
-        width: 300px;
+        width: 250px;
         cursor: pointer;
         background-color: #00adb5;
         color: #222831;
@@ -147,6 +148,47 @@ header {
         transition: background-color 0.5s;
         &:hover {
           background-color: #33bdc4;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 823px) {
+  header {
+    .wrapper {
+      form {
+        flex-direction: column;
+        align-items: center;
+        .input-field {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 15px;
+          .error {
+            position: static;
+            text-align: center;
+            padding: 5px 0 0 40px;
+            &.person {
+              padding: 5px 0 0;
+            }
+          }
+        }
+        button {
+          margin-top: 20px;
+          width: 40%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    .wrapper {
+      form {
+        button {
+          width: 70%;
         }
       }
     }

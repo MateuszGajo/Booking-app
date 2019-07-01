@@ -83,7 +83,7 @@ const NumberPeople = props => {
             onClick={handleClickAmount}
           />
         </div>
-        <div className="error">
+        <div className="error person">
           <span>
             {props.activeWindowError ? props.activeWindowError : null}
           </span>

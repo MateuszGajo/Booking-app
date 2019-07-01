@@ -8,7 +8,7 @@ const AvailableRoom = () => {
     <>
       {context.loading ? (
         <div className="animation">
-          <div class="ring">
+          <div className="ring">
             Ładowanie
             <span />
           </div>
@@ -18,7 +18,7 @@ const AvailableRoom = () => {
           {context.availableRoom ? (
             <>
               {context.availableRoom.map((item, index) => (
-                <Cards item={item} index={index} />
+                <Cards item={item} index={index} key={item.id} />
               ))}
             </>
           ) : context.availableRoom !== undefined ? (

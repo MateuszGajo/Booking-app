@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 import "moment/locale/pl";
@@ -27,7 +27,8 @@ const Calendar = props => {
         placeholder={`${props.placeholder}`}
         dayPickerProps={{
           locale: "pl",
-          localeUtils: MomentLocaleUtils
+          localeUtils: MomentLocaleUtils,
+          disabledDays: { before: new Date() }
         }}
       />
     </div>

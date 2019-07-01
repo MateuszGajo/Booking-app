@@ -1,4 +1,5 @@
 main {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: #eeeeee;
@@ -14,6 +15,7 @@ main {
       align-items: center;
       img {
         display: block;
+        width: 100%;
       }
     }
     .card {
@@ -55,5 +57,35 @@ main {
   }
   .second-card {
     align-self: flex-end;
+  }
+}
+
+@media (max-width: 823px) {
+  main {
+    .container {
+      flex-direction: column;
+      justify-content: center;
+      align-self: center;
+      .card {
+        order: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 411px) {
+  main {
+    .container {
+      .card {
+        .information {
+          .prices {
+            font-size: 20px;
+          }
+          .highline {
+            margin: 0 5px;
+          }
+        }
+      }
+    }
   }
 }

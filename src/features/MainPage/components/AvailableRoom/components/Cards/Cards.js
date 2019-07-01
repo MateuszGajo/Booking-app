@@ -1,8 +1,8 @@
 import React from "react";
 
 const Cards = ({ item, index }) => {
-  return index % 2 == 0 ? (
-    <section className="container" key={item.id}>
+  return index % 2 === 0 ? (
+    <section className="container">
       <div className="photo">
         <img src={item.image} alt="name" />
       </div>
@@ -23,7 +23,7 @@ const Cards = ({ item, index }) => {
       </div>
     </section>
   ) : (
-    <section className="container second-card" key={item.id}>
+    <section className="container second-card">
       <div className="card">
         <h2>{item.name}</h2>
         <p>Typ: {item.roomType}</p>

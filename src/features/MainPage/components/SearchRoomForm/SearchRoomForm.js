@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import Calendar from "./components/Calendar/Calendar";
-import NumberPeople from "./components/NumberOfPeople/NumberOfPeople";
+import NumberOfPeople from "./components/NumberOfPeople/NumberOfPeople";
 import roomContext from "../../context/roomContext";
 
 const SearchRoomForm = () => {
@@ -11,39 +11,46 @@ const SearchRoomForm = () => {
   const getRoomDate = (value, name) => {
     setRoomValues({ ...roomValues, [name]: value });
   };
-  const getRoomAmount = value => {
+  const getRoomAmountPeople = value => {
     setRoomValues({ ...roomValues, ...value });
   };
   const isActive = value => {
     setActiveOfPeople(value);
     if (!value) setErrors({ activeNumberOfPeople: "" });
   };
-  const handleSubmit = e => {
-    e.preventDefault();
+  const validation = () => {
+    const { arrivalDate, leaveDate, children, adults } = roomValues;
     if (activeNumberOfPeople)
       return setErrors({ activeNumberOfPeople: "Potwierdź swój wybor" });
-    if (!roomValues.arrivalDate)
+    else if (!arrivalDate)
       return setErrors({
         arrivalDateError: "Nie wybrałeś daty przyjazdu"
       });
-    if (!roomValues.leaveDate)
+    else if (!leaveDate)
       return setErrors({
         leaveDateError: "Nie wybrałeś daty wyjazdu"
       });
-    if (
-      (roomValues.children === 0 && roomValues.adults === 0) ||
-      roomValues.children === undefined
-    )
+    else if (arrivalDate >= leaveDate)
+      return setErrors({
+        leaveDateError: "Data wyjazdu musi być późniejsza od momentu przyjazdu"
+      });
+    else if ((children === 0 && adults === 0) || children === undefined)
       return setErrors({
         amountOfPersonError: "Nie wybrałeś liczby osób"
       });
-    if (roomValues.adults === 0)
+    else if (adults === 0)
       return setErrors({
         amountOfPersonError: "Dzieci nie mogą same podrózować"
       });
     setErrors({});
-    context.loadingRoom(true);
-    context.findAvailableRoom(roomValues);
+    return true;
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (validation()) {
+      context.loadingRoom(true);
+      context.findAvailableRoom(roomValues);
+    }
   };
   return (
     <section className="wrapper">
@@ -73,8 +80,8 @@ const SearchRoomForm = () => {
           </div>
         </div>
         <div className="input-field relative">
-          <NumberPeople
-            getRoomPersonAmount={getRoomAmount}
+          <NumberOfPeople
+            getRoomPersonAmount={getRoomAmountPeople}
             isActive={isActive}
             activeWindowError={errors.activeNumberOfPeople}
           />
