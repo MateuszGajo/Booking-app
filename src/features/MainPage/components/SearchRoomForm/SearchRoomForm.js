@@ -53,45 +53,47 @@ const SearchRoomForm = () => {
     }
   };
   return (
-    <section className="wrapper">
-      <h1>Znajdz pokój dla siebie</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="input-field">
+    <section className="banner__wrapper">
+      <h1 className="banner__title">Znajdz pokój dla siebie</h1>
+      <form onSubmit={handleSubmit} className="banner__form">
+        <div className="banner__input-field">
           <Calendar
             placeholder="Data Przyjazdu"
             name="arrivalDate"
             getRoomDate={getRoomDate}
           />
 
-          <div className="error">
-            <span>
+          <div className="banner__error">
+            <span className="banner__error-text">
               {errors.arrivalDateError ? errors.arrivalDateError : null}
             </span>
           </div>
         </div>
-        <div className="input-field">
+        <div className="banner__input-field">
           <Calendar
             placeholder="Data wyjazdu"
             name="leaveDate"
             getRoomDate={getRoomDate}
           />
-          <div className="error">
-            <span>{errors.leaveDateError ? errors.leaveDateError : null}</span>
+          <div className="banner__error">
+            <span className="banner__error-text">
+              {errors.leaveDateError ? errors.leaveDateError : null}
+            </span>
           </div>
         </div>
-        <div className="input-field relative">
+        <div className="number-of-people banner__input-field banner__input-field--relative">
           <NumberOfPeople
             getRoomPersonAmount={getRoomAmountPeople}
             isActive={isActive}
             activeWindowError={errors.activeNumberOfPeople}
           />
-          <div className="error">
-            <span>
+          <div className="banner__error">
+            <span className="banner__error-text">
               {errors.amountOfPersonError ? errors.amountOfPersonError : null}
             </span>
           </div>
         </div>
-        <button>Szukaj</button>
+        <button className="banner__form-btn">Szukaj</button>
       </form>
     </section>
   );

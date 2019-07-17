@@ -11,9 +11,9 @@ const NumberPeople = props => {
   };
   return (
     <>
-      <div className="input-with-icon">
+      <div className="input-with-icon ">
         <input
-          className="choose-field"
+          className="input-with-icon__input"
           type="text"
           placeholder={`${
             adults === 1 ? adults + " Dorosły" : adults + " Dorosłych"
@@ -23,27 +23,43 @@ const NumberPeople = props => {
             props.isActive(true);
           }}
         />
-        <i className="fas fa-user" />
+        <i className="input-with-icon__icon fas fa-user" />
       </div>
-      <section className={active ? "persons active" : "persons "}>
-        <div className="person-box">
-          <div className="person-type">
-            <span>Dorośli</span>
+      <section
+        className={
+          active
+            ? "number-of-people__persons number-of-people__persons--active"
+            : "number-of-people__persons "
+        }
+      >
+        <div className="number-of-people__person-box">
+          <div className="number-of-people__person-type">
+            <span className="number-of-people__persont-title">Dorośli</span>
           </div>
-          <div className="count">
+          <div className="number-of-people__count">
             <input
               type="button"
               value="-"
-              className={adults > 0 ? "amount" : "amount disable"}
+              className={
+                adults > 0 ? "btn-circle" : "btn-circle btn-circle--disable"
+              }
               onClick={() => {
                 if (adults > 0) setAdults(adults - 1);
               }}
             />
 
-            <span className={adults > 0 ? null : "disable"}>{adults}</span>
+            <span
+              className={
+                adults > 0
+                  ? "number-of-people__amount"
+                  : " number-of-people__amount number-of-people__amount--amount-disable"
+              }
+            >
+              {adults}
+            </span>
             <input
               type="button"
-              className="amount"
+              className="btn-circle"
               value="+"
               onClick={() => {
                 setAdults(adults + 1);
@@ -51,23 +67,33 @@ const NumberPeople = props => {
             />
           </div>
         </div>
-        <div className="person-box">
-          <div className="person-type">
+        <div className="number-of-people__person-box">
+          <div className="number-of-people__person-type">
             <span>Dzieci</span>
           </div>
-          <div className="count">
+          <div className="number-of-people__count">
             <input
               type="button"
               value="-"
-              className={children > 0 ? "amount" : "amount disable"}
+              className={
+                children > 0 ? "btn-circle" : "btn-circle btn-circle--disable"
+              }
               onClick={() => {
                 if (children > 0) setChildren(children - 1);
               }}
             />
-            <span className={children > 0 ? null : "disable"}>{children}</span>
+            <span
+              className={
+                children > 0
+                  ? "number-of-people__amount"
+                  : " number-of-people__amount number-of-people__amount--amount-disable"
+              }
+            >
+              {children}
+            </span>
             <input
               type="button"
-              className="amount"
+              className="btn-circle"
               value="+"
               onClick={() => {
                 setChildren(children + 1);
@@ -75,15 +101,15 @@ const NumberPeople = props => {
             />
           </div>
         </div>
-        <div className="amount">
+        <div className="number-of-people__amount">
           <input
             type="button"
-            className="btn-amount"
+            className="number-of-people__btn-confirm"
             value="Wybierz"
             onClick={handleClickAmount}
           />
         </div>
-        <div className="error person">
+        <div className="number-of-people__error number-of-people__error--person">
           <span>
             {props.activeWindowError ? props.activeWindowError : null}
           </span>

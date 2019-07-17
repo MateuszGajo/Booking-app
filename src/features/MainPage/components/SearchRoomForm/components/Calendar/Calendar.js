@@ -16,13 +16,16 @@ const Calendar = props => {
   };
   return (
     <div className="input-with-icon">
-      <i className="far fa-calendar-alt" />
+      <i className="input-with-icon__icon far fa-calendar-alt" />
       <DayPickerInput
         formatDate={formatDate}
         parseDate={parseDate}
         onDayChange={handleChange}
         name={props.name}
-        inputProps={{ readOnly: true }}
+        inputProps={{
+          className: "input-with-icon__input",
+          readOnly: true
+        }}
         format="LL"
         placeholder={`${props.placeholder}`}
         dayPickerProps={{

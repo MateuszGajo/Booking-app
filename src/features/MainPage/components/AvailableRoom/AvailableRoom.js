@@ -8,9 +8,9 @@ const AvailableRoom = () => {
     <>
       {context.loading ? (
         <div className="animation">
-          <div className="ring">
+          <div className="animation__ring">
             Ładowanie
-            <span />
+            <span className="animation__circle" />
           </div>
         </div>
       ) : (

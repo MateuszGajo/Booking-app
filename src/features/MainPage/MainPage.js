@@ -4,10 +4,10 @@ import AvailableRoom from "./components/AvailableRoom/AvailableRoom";
 const MainPage = () => {
   return (
     <>
-      <header>
+      <header className="banner">
         <SearchRoomForm />
       </header>
-      <main>
+      <main className="rooms">
         <AvailableRoom />
       </main>
     </>
