@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import roomContext from "./roomContext";
-import jsonp from "jsonp";
 
 const RoomContextProvider = props => {
   const [availableRoom, setAvailableRoom] = useState();
@@ -11,12 +10,13 @@ const RoomContextProvider = props => {
 
   const findAvailableRoom = valueRoom => {
     const { arrivalDate, leaveDate, adults, children } = valueRoom;
-    const url = `http://testapi.itur.pl/api.php?date_from=${arrivalDate}&date_to=${leaveDate}&nb_adults=${adults}&nb_children=${children}`;
-    jsonp(url, {}, (err, data) => {
-      if (err) throw new Error("Błąd w pobieraniu danych");
-      loadingRoom(false);
-      setAvailableRoom(data);
-    });
+    const url = `https://apiforrooms.herokuapp.com/api?date_from=${arrivalDate}&date_to=${leaveDate}&nb_adults=${adults}&nb_children=${children}`;
+    fetch(url)
+      .then(resp => resp.json())
+      .then(data => {
+        loadingRoom(false);
+        setAvailableRoom(data);
+      });
   };
   return (
     <roomContext.Provider

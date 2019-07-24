@@ -10,17 +10,15 @@ const Cards = ({ item, index }) => {
         <h2 className="room__title">{item.name}</h2>
         <p className="room__text-info room__text-info--grey">
           {" "}
-          Typ: {item.roomType}
+          Typ: {item.type}
         </p>
         <div className="room__information">
           <div className="room__room-info">
-            <p className="room__text-info">Sypialnie: {item.bedroomsCount}</p>
+            <p className="room__text-info">Sypialnie: {item.bedrooms}</p>
             <p className="room__text-info">
-              Pojedyncze łóżka: {item.singleBedsCount}
+              Pojedyncze łóżka: {item.singleBeds}
             </p>
-            <p className="room__text-info">
-              Podwójne łóżka: {item.doubleBedsCount}
-            </p>
+            <p className="room__text-info">Podwójne łóżka: {item.doubleBeds}</p>
           </div>
           <div className="highline" />
           <div className="room__prices">
@@ -34,7 +32,7 @@ const Cards = ({ item, index }) => {
       <div className="room__card">
         <h2 className="room__title">{item.name}</h2>
         <p className="room__text-info room__text-info--grey">
-          Typ: {item.roomType}
+          Typ: {item.type}
         </p>
         <div className="room__information">
           <div className="room__prices">
@@ -42,13 +40,11 @@ const Cards = ({ item, index }) => {
           </div>
           <div className="highline" />
           <div className="room__room-info">
-            <p className="room__text-info">Sypialnie: {item.bedroomsCount}</p>
+            <p className="room__text-info">Sypialnie: {item.bedrooms}</p>
             <p className="room__text-info">
-              Pojedyncze łóżka: {item.singleBedsCount}
+              Pojedyncze łóżka: {item.singleBeds}
             </p>
-            <p className="room__text-info">
-              Podwójne łóżka: {item.doubleBedsCount}
-            </p>
+            <p className="room__text-info">Podwójne łóżka: {item.doubleBeds}</p>
           </div>
         </div>
       </div>
