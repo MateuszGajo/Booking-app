@@ -1,9 +1,6 @@
-Application created for searching hotel free rooms
+## Booking app
 
-## Run Aplication
-
-Run terminal go to project directory, use command: npm install.
-Wait for installation, next use command: npm start
+Book your preferred hotels online.
 
 ## demo
 https://hotel-b5ba7.firebaseapp.com/
